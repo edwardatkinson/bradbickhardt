@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brad Bickhardt | Tenor</title>
+  
+  <!-- Google Fonts (EB Garamond 400/600 & Mulish 200/300/400/600) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600&family=Mulish:wght@200;300;400;600&display=swap" rel="stylesheet">
+  
+  <!-- Home Page Relative Stylesheet Link -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar Component -->
+  <header class="site-header">
+    <div class="header-container">
+      <!-- 1. Logo (Extreme Left) -->
+      <a href="/" class="logo">
+        BRAD<br>BICKHARDT
+      </a>
+
+      <!-- 2. Navigation Menu (Middle) -->
+      <nav class="nav-menu">
+        <ul class="nav-list">
+          <li><a href="/" class="nav-link active">HOME</a></li>
+          <li><a href="/photos/" class="nav-link">PHOTOS</a></li>
+          <li><a href="/media/" class="nav-link">MEDIA</a></li>
+          <li><a href="/about/" class="nav-link">ABOUT</a></li>
+          <li><a href="/schedule/" class="nav-link">SCHEDULE</a></li>
+          <li><a href="/contact/" class="nav-link">CONTACT</a></li>
+          <li><a href="/teaching/" class="nav-link">TEACHING</a></li>
+        </ul>
+      </nav>
+
+      <!-- 3. CTA Contact Button (Extreme Right on Desktop) -->
+      <a href="/contact/" class="desktop-cta-button">CONTACT</a>
+
+      <!-- 4. Hamburger Toggle (Extreme Right on Mobile) -->
+      <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main>
+    <!-- Hero Carousel Component (90VH height) -->
+    <section class="hero-carousel">
+      <div class="carousel-container">
+        
+        <!-- Slide 1 (Active by Default) -->
+        <div class="carousel-slide active" style="background-image: url('img/carousel-1.jpg');">
+          <div class="carousel-overlay"></div>
+          <div class="carousel-content">
+            <blockquote class="carousel-quote">“A stage presence that projects a young man madly in love.”</blockquote>
+            <cite class="carousel-cite">THE HERALD TIMES</cite>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="carousel-slide" style="background-image: url('img/carousel-2.jpg');">
+          <div class="carousel-overlay"></div>
+          <div class="carousel-content">
+            <blockquote class="carousel-quote">“The grease that made the gears of this production work.”</blockquote>
+            <cite class="carousel-cite">SEEN AND HEARD INTERNATIONAL</cite>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="carousel-slide" style="background-image: url('img/carousel-3.jpg');">
+          <div class="carousel-overlay"></div>
+          <div class="carousel-content">
+            <blockquote class="carousel-quote">“A healthy and soaring tenor voice.”</blockquote>
+            <cite class="carousel-cite">THE HERALD TIMES</cite>
+          </div>
+        </div>
+
+        <!-- Navigation Chevrons -->
+        <button class="carousel-nav carousel-prev" aria-label="Previous slide">
+          <svg viewBox="0 0 24 24">
+            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="#fff"/>
+          </svg>
+        </button>
+        <button class="carousel-nav carousel-next" aria-label="Next slide">
+          <svg viewBox="0 0 24 24">
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="#fff"/>
+          </svg>
+        </button>
+
+        <!-- Slide Indicator Dots -->
+        <div class="carousel-dots">
+          <button class="carousel-dot active" aria-label="Go to slide 1"></button>
+          <button class="carousel-dot" aria-label="Go to slide 2"></button>
+          <button class="carousel-dot" aria-label="Go to slide 3"></button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Homepage Grid Sections (Light Warm Off-White) -->
+    <section class="home-grid-section">
+      <div class="grid-container">
+        
+        <!-- SUB-SECTION 1: THE BIO BLOCK (Responsive 2-Column Grid) -->
+        <div class="bio-grid">
+          <!-- Left Column: Bio copy and Call-To-Action -->
+          <div class="bio-text-col">
+            <h2 class="grid-headline">“...a healthy and soaring tenor voice.”</h2>
+            <p class="grid-paragraph">
+              Praised for his "healthy and soaring tenor voice" (The Herald Times), as well as his "brilliant physical grace, 
+              timing, and precision" (Broadway World), Korean-American tenor Brad Bickhardt is vibrant and versatile in both opera and 
+              musical theatre. Mr. Bickhardt has previously been engaged with <strong>Opera Theatre of St. Louis</strong>, <strong>Arizona Opera</strong>, 
+              <strong>Opera Saratoga</strong>, <strong>Wolf Trap Opera</strong>, and <strong>The Phoenix Symphony</strong>. He is an alumnus of Indiana University 
+              and is represented by <strong>Stratagem Artists</strong>.
+            </p>
+            <a href="/about/" class="btn-dark-blue">READ MORE →</a>
+          </div>
+
+          <!-- Right Column: Vertical Headshot (Stacks second on Mobile) -->
+          <div class="bio-image-col">
+            <img src="img/headshot_home.jpg" alt="Brad Bickhardt Portrait" class="bio-headshot" loading="lazy">
+          </div>
+        </div>
+
+        <!-- SUB-SECTION 2: THE VIDEO BLOCK (Responsive 2-Column IFrame Grid) -->
+        <div class="video-grid">
+          
+          <!-- Left Video Block -->
+          <div class="video-card">
+            <div class="video-iframe-wrapper">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/g_jZrIW-ZT4?si=8ACznlz-nbdhYzWU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>  
+			</div>
+            <h3 class="video-title">Dies Bildnis ist bezaubernd schön</h3>
+            <p class="video-meta">
+              BRAD BICKHARDT, TENOR<br>
+              JAMES LOWE, CONDUCTOR<br>
+              APRIL 8, 2023
+            </p>
+            <a href="/media/" class="btn-dark-blue">WATCH MORE →</a>
+          </div>
+
+          <!-- Right Video Block -->
+          <div class="video-card">
+            <div class="video-iframe-wrapper">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/4t5rj-cFkt0?si=hajAg7ZHv5CHnxuZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <h3 class="video-title">Salut! demeure chaste et pure</h3>
+            <p class="video-meta">
+              BRAD BICKHARDT, TENOR<br>
+              MARIKA YASUDA, PIANO<br>
+              JUNE, 2024
+            </p>
+            <a href="/media/" class="btn-dark-blue">WATCH MORE →</a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+  
+    <!-- NEW COMPONENT: FULL-WIDTH BANNER WITH OVERLAY BUTTON -->
+    <section class="photo-banner-section" style="background-image: url('img/home_bread.jpg');">
+      <div class="photo-banner-overlay"></div>
+      <div class="photo-banner-content">
+        <!-- Links directly to your photos subpage -->
+        <a href="/photos/" class="btn-white">PHOTOS →</a>
+      </div>
+    </section>
+
+  </main>
+  
+   <!-- BOTTOM FOOTER COMPONENT -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      
+      <!-- 1. Footer Navigation Menu -->
+      <nav class="footer-nav">
+        <ul class="footer-nav-list">
+          <li><a href="/" class="footer-nav-link">HOME</a></li>
+          <li><a href="/about/" class="footer-nav-link">ABOUT</a></li>
+          <li><a href="/photos/" class="footer-nav-link">PHOTOS</a></li>
+          <li><a href="/media/" class="footer-nav-link">MEDIA</a></li>
+          <li><a href="/schedule/" class="footer-nav-link">SCHEDULE</a></li>
+          <li><a href="/contact/" class="footer-nav-link">CONTACT</a></li>
+          <li><a href="/teaching/" class="footer-nav-link">TEACHING</a></li>
+        </ul>
+      </nav>
+
+      <!-- 2. Copyright / Design Credits -->
+      <div class="footer-credits">
+        <p>© BRAD BICKHARDT. ALL RIGHTS RESERVED.</p>
+        <p>DESIGNED BY <a href="#" class="footer-link">EDWARD ATKINSON</a></p>
+      </div>
+
+      <!-- 3. Representation Details -->
+      <div class="footer-management">
+        <h4 class="management-title">STRATAGEM ARTIST MANAGEMENT, LLC</h4>
+        <p class="management-meta">JUSTIN WERNER</p>
+        <p class="management-meta"><a href="mailto:JWERNER@STRATAGEMARTISTS.COM" class="footer-link">JWERNER@STRATAGEMARTISTS.COM</a></p>
+        <p class="management-meta"><a href="tel:6468479924" class="footer-link">TEL. 646.847.9924</a></p>
+      </div>
+
+      <!-- 4. PNG Social Media Icons -->
+      <div class="footer-socials">
+        <a href="#" class="social-icon-link" aria-label="Instagram"><img src="img/social_inst.png" alt="Instagram"></a>
+        <a href="#" class="social-icon-link" aria-label="Facebook"><img src="img/social_fb.png" alt="Facebook"></a>
+        <a href="#" class="social-icon-link" aria-label="YouTube"><img src="img/social_yt.png" alt="YouTube"></a>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Javascript imports -->
+  <script src="js/menu.js" defer></script>
+  <script src="js/carousel.js" defer></script>
+</body>
+</html>

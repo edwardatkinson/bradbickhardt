@@ -1,0 +1,1570 @@
+/* ==========================================================================
+   1. GLOBAL RESET & BASE STYLES
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #171717; /* Slate base background */
+  font-family: 'Mulish', 'Muli', sans-serif;
+  color: #fffaf7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Shared Utility Style: Dark Blue Block Button & Desktop CTA Button */
+.btn-dark-blue,
+.desktop-cta-button {
+  display: inline-block;
+  background-color: #002447; /* Dark Blue */
+  color: #ffffff; /* Solid White */
+  font-family: 'Mulish', 'Muli', sans-serif;
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 400; /* Normal */
+  letter-spacing: 0.15em;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 16px 28px; /* Increased vertical padding to 16px */
+  border-radius: 2px;
+  text-align: center;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.btn-dark-blue:hover,
+.desktop-cta-button:hover {
+  background-color: #bc672c; /* Warm Tan/Orange */
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   2. HEADER & NAVIGATION STYLES
+   ========================================================================== */
+.site-header {
+  background-color: #171717; /* Solid Slate */
+  border-top: 12px solid #002447; /* Tripled Dark Blue bar at the top edge */
+  border-bottom: 1px solid rgba(255, 250, 247, 0.05); /* Subtle bottom divider */
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.header-container {
+  width: 100%;             /* Allow menu to expand to screen edges */
+  max-width: none;         /* Remove layout caps so it goes all the way left/right */
+  padding: 20px 40px;      /* Generous breathing room padding at screen edges */
+  display: flex;
+  justify-content: space-between; /* Pushes Logo left, Menu center, CTA right */
+  align-items: center;
+}
+
+/* Logo Sizing & Typography */
+.logo {
+  font-family: 'EB Garamond', serif;
+  font-size: 35px;
+  line-height: 32px;
+  font-weight: 600;
+  color: #fffaf7;
+  text-decoration: none;
+  text-transform: uppercase;
+  display: inline-block;
+  letter-spacing: -0.01em;
+  transition: opacity 0.25s ease;
+}
+
+.logo:hover {
+  opacity: 0.85;
+}
+
+/* Navigation List Wrapper */
+.nav-menu {
+  display: flex;
+  align-items: center;
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+/* Standard Nav Link Style */
+.nav-link {
+  font-family: 'Mulish', 'Muli', sans-serif;
+  font-size: 16px; /* Sized precisely */
+  line-height: 28px; /* Line height precisely matched */
+  font-weight: 200; /* Extra Light */
+  color: #fffaf7;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  display: inline-block;
+  
+  /* Layout Spacing Specifications */
+  padding: 15px 30px; /* 15px vertical padding, 30px horizontal padding */
+  margin: 0 25px; /* 25px left/right margin spacing */
+  
+  transition: color 200ms ease; 
+}
+
+/* Hover State: Color fades smoothly to warm orange/tan (#bc672c), weight stays 200 */
+.nav-link:hover {
+  color: #bc672c;
+}
+
+/* Active State: Bold (Semi-Bold 600) and White */
+.nav-link.active {
+  font-weight: 600; /* Semi-Bold */
+  color: #fffaf7;
+}
+
+/* Ensure active link stays white when hovered */
+.nav-link.active:hover {
+  color: #fffaf7;
+}
+
+/* Desktop-specific structural overrides for CTA button */
+.desktop-cta-button {
+  display: inline-block; 
+}
+
+/* Mobile Toggle Hamburger Button (Hidden on Desktop) */
+.menu-toggle {
+  display: none; /* Hidden on desktop */
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  position: relative; /* Establish absolute alignment boundary for lines */
+  border-radius: 4px;
+  transition: background-color 0.25s ease;
+}
+
+/* Absolute vertical position stacking for pixel-perfect centering */
+.hamburger-line {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: #fffaf7;
+  position: absolute;
+  left: 10px; /* Centered horizontally: (44px button - 24px line) / 2 */
+  transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
+}
+
+/* Base vertical offsets for default state */
+.hamburger-line:nth-child(1) {
+  top: 15px; /* Offset top */
+}
+.hamburger-line:nth-child(2) {
+  top: 21px; /* Exactly centered */
+}
+.hamburger-line:nth-child(3) {
+  top: 27px; /* Offset bottom */
+}
+
+/* ==========================================================================
+   3. HERO CAROUSEL STYLES
+   ========================================================================== */
+.hero-carousel {
+  position: relative;
+  width: 100%;
+  height: 90vh; /* Scaled precisely to 90% viewport height */
+  overflow: hidden;
+  background-color: #171717; /* Dark background fallback */
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Absolute Stacked Slides for Cross-Fade */
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 500ms ease-in-out; 
+}
+
+.carousel-slide.active {
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 2;
+}
+
+/* Vignette Legibility Protection Overlay */
+.carousel-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(23, 23, 23, 0.1) 0%,
+    rgba(23, 23, 23, 0.3) 50%,
+    rgba(23, 23, 23, 0.75) 100%
+  );
+  z-index: 3;
+}
+
+/* Quote Layout */
+.carousel-content {
+  position: absolute;
+  bottom: 12%; /* Sits elegantly above bottom dots margin */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 950px;
+  text-align: center;
+  z-index: 4;
+}
+
+.carousel-quote {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(24px, 4vw, 40px); /* Seamlessly scales size on smaller screens */
+  line-height: 1.35;
+  font-weight: 600; /* Styled Bold serif */
+  color: #fffaf7;
+  margin-bottom: 15px;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5); /* Boosts reading contrast on lighter sets */
+}
+
+.carousel-cite {
+  font-family: 'Mulish', 'Muli', sans-serif;
+  font-size: clamp(12px, 1.5vw, 15px);
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #fffaf7;
+  letter-spacing: 0.2em;
+  display: block;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* Slide Navigation Chevrons */
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 15px;
+  z-index: 5;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.6;
+}
+
+.carousel-nav:hover {
+  opacity: 1;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-prev {
+  left: 20px;
+}
+
+.carousel-next {
+  right: 20px;
+}
+
+.carousel-nav svg {
+  width: clamp(30px, 4.5vw, 44px);
+  height: clamp(30px, 4.5vw, 44px);
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
+}
+
+/* Slide Indicator Dots Container */
+.carousel-dots {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 5;
+}
+
+/* Dot Style */
+.carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(255, 250, 247, 0.4); /* Muted inactive dot */
+  cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.carousel-dot:hover {
+  background-color: rgba(255, 250, 247, 0.7);
+}
+
+.carousel-dot.active {
+  background-color: #fffaf7; /* Solid active white */
+  transform: scale(1.2);
+}
+
+/* ==========================================================================
+   4. CONTENT GRID STYLES (Light Off-White Section)
+   ========================================================================== */
+.home-grid-section {
+  background-color: #fffaf7; /* Light warm off-white */
+  color: #171717; /* Dark slate text for maximum legibility */
+  padding: 100px 0; /* Let grid-container manage the centered width padding */
+  width: 100%;
+}
+
+.grid-container {
+  width: 80%;             /* Desktop layout set at exactly 80% screen width */
+  max-width: none;         
+  margin: 0 auto;          /* Centers container on screen */
+  display: flex;
+  flex-direction: column;
+  gap: 120px; /* Separator gap between Bio Block and Video Block */
+}
+
+/* SUB-SECTION 1: BIO BLOCK STYLE */
+.bio-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Symmetrical split */
+  gap: 80px;
+  align-items: center; /* Vertically centers copy text beside portrait image */
+}
+
+.bio-text-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Aligns read-more button left */
+}
+
+.grid-headline {
+  font-family: 'EB Garamond', serif;
+  font-size: 60px; /* Exact size */
+  line-height: 65px; /* Exact line-height */
+  font-weight: 600;
+  color: #171717;
+  margin-bottom: 25px;
+}
+
+.grid-paragraph {
+  font-family: 'EB Garamond', serif; /* Updated font to elegant serif */
+  font-size: 22px; /* Exact size */
+  line-height: 38px; /* Exact line-height */
+  font-weight: 400;
+  color: #2e2e2e;
+  margin-bottom: 35px;
+}
+
+.bio-image-col {
+  display: flex;
+  justify-content: center;
+}
+
+.bio-headshot {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 2px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); /* Soft drop shadow definition */
+}
+
+/* SUB-SECTION 2: VIDEO BLOCK STYLE */
+.video-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px; /* Wide gap matches layout columns */
+}
+
+.video-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Fluid Aspect-Ratio Wrapper (Responsive 16:9) */
+.video-iframe-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* Keeps exact 16:9 proportion */
+  height: 0;
+  overflow: hidden;
+  border-radius: 2px;
+  background-color: #000;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.video-iframe-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.video-title {
+  font-family: 'EB Garamond', serif;
+  font-size: 32px; /* Exact size */
+  line-height: 28px; /* Exact line-height */
+  font-weight: 600;
+  color: #171717;
+  margin-bottom: 15px;
+}
+
+.video-meta {
+  font-family: 'Mulish', 'Muli', sans-serif;
+  font-size: 16px; /* Exact size */
+  line-height: 28px; /* Exact line-height */
+  font-weight: 300; /* Light 300 */
+  color: #666666;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 25px;
+}
+
+/* ==========================================================================
+   5. FULL-WIDTH BANNER STYLES
+   ========================================================================== */
+.photo-banner-section {
+  position: relative;
+  width: 100%;
+  height: 75vh; /* Updated precisely to 75vh height */
+  min-height: 450px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end; /* Pin overlay button near the bottom frame border */
+  padding-bottom: 60px; /* Spacing margin from bottom viewport frame */
+}
+
+/* Vignette Legibility Protection Overlay */
+.photo-banner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(23, 23, 23, 0.1) 0%,
+    rgba(23, 23, 23, 0.4) 100%
+  );
+  z-index: 1;
+}
+
+.photo-banner-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Solid White Banner CTA Button */
+.btn-white {
+  display: inline-block;
+  background-color: #ffffff;
+  color: #171717; /* Slate dark contrast */
+  font-family: 'Mulish', 'Muli', sans-serif;
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 400; /* Normal weight */
+  letter-spacing: 0.15em;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 16px 36px; /* Slightly wider padding footprint for horizontal symmetry */
+  border-radius: 2px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); /* Strong contrast shadow */
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.btn-white:hover {
+  background-color: #bc672c; /* Warm Tan/Orange */
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   6. BOTTOM FOOTER STYLES
+   ========================================================================== */
+.site-footer {
+  background-color: #171717; /* Solid Slate */
+  border-top: 1px solid rgba(255, 250, 247, 0.05); /* Subtle baseline border separator */
+  padding: 80px 40px;
+  width: 100%;
+}
+
+.footer-container {
+  width: 80%; /* Match centered layout column widths on desktop */
+  max-width: none;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 45px; /* Clean spacing between subdivisions */
+  text-align: center;
+}
+
+/* Footer Nav Sizing & Layout */
+.footer-nav-list {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  gap: 35px; /* Spacing between navigation links */
+}
+
+.footer-nav-link {
+  font-family: 'Mulish', 'Muli', sans-serif;
+  font-size: 16px; /* Match Nav Links Size */
+  line-height: 28px; /* Match Nav Links Height */
+  font-weight: 400;
+  color: #fffaf7;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  transition: color 0.2s ease;
+}
+
+.footer-nav-link:hover {
+  color: #bc672c; /* Cohesive Warm Tan hover transition */
+}
+
+/* Secondary Anchor Links */
+.footer-link {
+  color: #fffaf7;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: #bc672c;
+}
+
+/* Copyright & Design Credits */
+.footer-credits {
+  font-family: 'Mulish', 'Muli', sans-serif;
+  font-size: 16px; /* Sized to match primary text blocks */
+  line-height: 28px; /* Height matched */
+  font-weight: 300; /* Clean Light */
+  color: rgba(255, 250, 247, 0.6); /* Soft secondary text contrast */
+  letter-spacing: 0.12em;
+}
+
+/* Representation Block */
+.footer-management {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.management-title {
+  font-family: 'Mulish', 'Muli', sans-serif;
+  font-size: 16px; /* Match Title blocks */
+  line-height: 28px; /* Height matched */
+  font-weight: 600; /* Bold header */
+  color: #fffaf7;
+  letter-spacing: 0.15em;
+}
+
+.management-meta {
+  font-family: 'Mulish', 'Muli', sans-serif;
+  font-size: 16px; /* Sized to match standard text blocks */
+  line-height: 28px; /* Height matched */
+  font-weight: 300; /* Clean Light */
+  color: rgba(255, 250, 247, 0.7);
+  letter-spacing: 0.12em;
+}
+
+/* Social Media png Icons */
+.footer-socials {
+  display: flex;
+  gap: 25px; /* Gap between icons */
+  justify-content: center;
+  align-items: center;
+}
+
+.social-icon-link {
+  display: inline-block;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.social-icon-link:hover {
+  opacity: 0.8;
+  transform: scale(1.1); /* Subtle zoom depth */
+}
+
+.social-icon-link img {
+  width: 24px; /* Exact custom layout size limit */
+  height: 24px;
+  object-fit: contain;
+  display: block;
+}
+
+/* ==========================================================================
+   7. ABOUT PAGE STYLES (Primary Desktop Grid)
+   ========================================================================== */
+.about-section {
+  background-color: #fffaf7; /* Matches light warm off-white content background */
+  color: #171717; /* Dark slate text for reading contrast */
+  padding: 100px 0;
+  width: 100%;
+}
+
+.about-container {
+  width: 80%; /* Centers cleanly and mirrors home grid widths on desktop */
+  max-width: none;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 120px; /* Breathing room space before quotes block */
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Symmetrical equal column split */
+  gap: 80px;
+  align-items: start; /* Locks text column baseline alignment to top */
+}
+
+.about-text-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-headline {
+  font-family: 'EB Garamond', serif;
+  font-size: 60px; /* Spec matches requested 60px size */
+  line-height: 65px; /* Spec matches requested 65px height */
+  font-weight: 400; /* Garamond 400 normal weight */
+  color: #171717;
+  margin-bottom: 35px;
+}
+
+.about-headline em {
+  font-style: italic;
+  font-weight: 400;
+}
+
+.about-paragraph {
+  font-family: 'EB Garamond', serif;
+  font-size: 22px;
+  line-height: 38px;
+  font-weight: 400;
+  color: #2e2e2e;
+  margin-bottom: 25px;
+}
+
+.about-paragraph:last-of-type {
+  margin-bottom: 0;
+}
+
+/* Centered Button Wrapper to align block button precisely inside text column */
+.about-button-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  width: 100%;
+}
+
+/* Download Resume Button (Muli/Mulish, Weight 200, 12px, 28px height, uniform padding) */
+.about-btn-resume {
+  display: inline-block;
+  background-color: #002447; /* Dark Blue */
+  color: #ffffff; /* Solid White */
+  font-family: 'Mulish', 'Muli', sans-serif;
+  font-size: 12px;
+  line-height: 28px;
+  font-weight: 200; /* Extra Light */
+  letter-spacing: 0.15em;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 16px 28px; /* Uniform vertical and horizontal padding matching home page buttons */
+  border-radius: 2px;
+  text-align: center;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.about-btn-resume:hover {
+  background-color: #bc672c; /* Warm Tan/Orange */
+  color: #ffffff;
+}
+
+.about-image-col {
+  display: flex;
+  justify-content: center;
+}
+
+.about-headshot {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 2px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Press Quotes styling blocks */
+.press-quotes-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.press-heading {
+  font-family: 'EB Garamond', serif;
+  font-size: 48px;
+  line-height: 54px;
+  font-weight: 400;
+  color: #171717;
+  margin-bottom: 60px;
+}
+
+.quote-item {
+  margin-bottom: 50px;
+  max-width: 850px;
+  width: 100%;
+}
+
+.quote-item:last-child {
+  margin-bottom: 0;
+}
+
+.quote-text {
+  font-family: 'EB Garamond', serif;
+  font-size: 22px; /* Set precisely to 22px */
+  line-height: 38px; /* Set precisely to 38px line height */
+  font-weight: 500; /* Medium weight */
+  color: #171717;
+  margin-bottom: 8px; /* Tight visual margin before citation source */
+}
+
+.quote-cite {
+  font-family: 'EB Garamond', serif; /* Critically set to EB Garamond */
+  font-size: 22px; /* Set precisely to 22px */
+  line-height: 38px; /* Set precisely to 38px line height */
+  font-weight: 400; /* Weight 400 normal */
+  color: #666666;
+  font-style: normal; /* Removes default citation italics */
+  display: block;
+}
+
+/* ==========================================================================
+   10. TEACHING PAGE STYLES (Added)
+   ========================================================================== */
+.teaching-section {
+  background-color: #fff4ed; /* Light warm off-white */
+  color: #171717; /* Dark slate text */
+  padding: 100px 0;
+  width: 100%;
+}
+
+.teaching-container {
+  width: 80%; /* Content column set exactly to 90% */
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.teaching-heading {
+  font-family: 'EB Garamond', serif;
+  font-size: 60px;
+  line-height: 65px;
+  font-weight: 400; /* Regular weight */
+  color: #171717;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.teaching-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Symmetrical split */
+  gap: 80px;
+  align-items: start;
+}
+
+.section-subheading {
+  font-family: 'Mulish', sans-serif;
+  font-size: 22px;
+  line-height: 28px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #171717;
+  margin-bottom: 30px;
+}
+
+.rates-subheading {
+  margin-top: 50px; /* Creates separating gap below the testimonials */
+}
+
+.teaching-paragraph {
+  font-family: 'EB Garamond', serif;
+  font-size: 22px;
+  line-height: 38px;
+  font-weight: 400;
+  color: #2e2e2e;
+  margin-bottom: 25px;
+}
+
+.teaching-paragraph:last-of-type {
+  margin-bottom: 0;
+}
+
+.teaching-quote {
+  font-family: 'EB Garamond', serif;
+  font-style: italic; /* Beautiful Garamond Italics */
+  font-size: 30px;
+  line-height: 42px;
+  font-weight: 400;
+  color: #2e2e2e;
+  margin-bottom: 30px;
+}
+
+.teaching-quote:last-of-type {
+  margin-bottom: 0;
+}
+
+.rates-list {
+  list-style: none;
+}
+
+.rate-item {
+  font-family: 'EB Garamond', serif;
+  font-size: 22px;
+  line-height: 38px;
+  font-weight: 400;
+  color: #2e2e2e;
+}
+
+/* Centered CTA wrapper and button styles */
+.teaching-cta-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 80px;
+  width: 100%;
+}
+
+.teaching-cta-button {
+  display: inline-block;
+  background-color: #002447; /* Dark Blue */
+  color: #ffffff;
+  font-family: 'Mulish', sans-serif;
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 16px 36px; /* Matches the visual weight of other bottom buttons */
+  border-radius: 2px;
+  text-align: center;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.teaching-cta-button:hover {
+  background-color: #bc672c; /* Warm Tan/Orange */
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   11. CONTACT PAGE STYLES (Added)
+   ========================================================================== */
+.contact-section {
+  background-color: #fff4ed; /* Matches warm off-white base pages */
+  color: #171717; /* Dark slate text */
+  padding: 100px 0;
+  width: 100%;
+  text-align: center;
+}
+
+.contact-container {
+  width: 80%; /* Sets centered content column to exactly 80% on desktop */
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.contact-heading {
+  font-family: 'EB Garamond', serif;
+  font-size: 60px;
+  line-height: 65px;
+  font-weight: 400; /* Regular weight EB Garamond */
+  color: #171717;
+  margin-bottom: 40px;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px; /* Clean spacing between rows */
+  align-items: center;
+}
+
+.contact-subtext {
+  font-family: 'Mulish', sans-serif;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 300;
+  color: #2e2e2e;
+  letter-spacing: 0.05em;
+}
+
+.contact-link-row {
+  font-family: 'Mulish', sans-serif;
+  font-size: 18px;
+  line-height: 28px;
+}
+
+.contact-link {
+  color: #171717;
+  text-decoration: underline;
+  text-underline-offset: 4px; /* Elevates baseline underline for clean letter clearance */
+  transition: color 0.25s ease;
+}
+
+.contact-link:hover {
+  color: #bc672c; /* Cohesive Warm Tan transition on hover states */
+}
+
+/* Big Stage Banner Section */
+.contact-banner-section {
+  width: 100%;
+  height: 90vh; /* Set as a tall dramatic background photo panel */
+  min-height: 450px;
+  background-image: url('img/contact_stage.jpg'); /* Handled relative to CSS root directory */
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+}
+
+/* ==========================================================================
+   12. SCHEDULE PAGE STYLES (Added)
+   ========================================================================== */
+.schedule-hero {
+  position: relative;
+  width: 100%;
+  /* Implements 180 DEG linear gradient layer transitioning to solid Webflow dark blue */
+  background: linear-gradient(180deg, rgba(0, 36, 71, 0) 0%, rgba(0, 36, 71, 1) 100%), 
+              url('img/carousel-1.jpg');
+  background-size: cover;
+background-position: center, 50% 20%; 
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  padding: 100px 0;
+}
+
+.schedule-hero-container {
+  width: 50%; /* Upper content container width */
+  margin: 0 auto;
+}
+
+.schedule-hero-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr; /* Keeps right column clear to expose hero photo */
+  gap: 80px;
+}
+
+.upcoming-heading {
+  font-family: 'EB Garamond', serif;
+  font-size: 70px;
+  line-height: 70px;
+  font-weight: 500; /* Medium Weight */
+  font-style: italic; /* Italic */
+  color: #fffaf7;
+  margin-bottom: 50px;
+}
+
+.schedule-item {
+  margin-bottom: 40px;
+}
+
+.schedule-item:last-child {
+  margin-bottom: 0;
+}
+
+.opera-title {
+  font-family: 'EB Garamond', serif;
+  font-size: 32px;
+  line-height: 32px;
+  font-weight: 800; /* Extra Bold */
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.opera-meta {
+  font-family: 'Mulish', sans-serif;
+  font-size: 16px;
+  line-height: 28px;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+/* Color thematic controls for overlay vs page backgrounds */
+.item-light .opera-title,
+.item-light .opera-meta {
+  color: #fffaf7;
+}
+
+.item-dark .opera-title {
+  color: #171717; /* Dark slate */
+}
+
+.item-dark .opera-meta {
+  color: #2e2e2e; /* Muted slate */
+}
+
+.schedule-footnote {
+  font-family: 'Mulish', sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 300;
+  color: #666666;
+  text-transform: lowercase;
+  margin-top: 4px;
+}
+
+/* Past Performances Lower Layout Section */
+.schedule-past-section {
+  background-color: #fff4ed; /* Set cleanly to warm peachy background color */
+  padding: 100px 0;
+  width: 100%;
+}
+
+.schedule-past-container {
+  width: 80%; /* Updated to exactly 80% content width on desktop */
+  max-width: 800px; /* Constrains column width to match screenshot bounds */
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.schedule-past-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.schedule-cta-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+  width: 100%;
+}
+
+/* ==========================================================================
+   13. PHOTOS PAGE STYLES (Added)
+   ========================================================================== */
+.photos-section {
+  background-color: #fffaf7; /* Elegant off-white backdrop */
+  padding: 100px 0;
+  width: 100%;
+}
+
+.photos-container {
+  width: 60%; /* Updated to exactly 60% on desktop as requested */
+  max-width: none;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px; /* Sets unified gap space between stacked elements */
+}
+
+.photo-stacked {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 2-Column Section (Columns 3) */
+.photos-columns-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Symmetrical equal-width split */
+  gap: 40px;
+}
+
+.photos-column {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.photo-grid-item {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ==========================================================================
+   8. RESPONSIVE MOBILE STYLES (CONSOLIDATED 991px Breakpoint)
+   ========================================================================== */
+@media (max-width: 991px) {
+  /* Spacing adjustment for smaller mobile/tablet layouts */
+  .header-container {
+    padding: 15px 20px;
+  }
+
+  .logo {
+    font-size: 28px;
+    line-height: 26px;
+  }
+
+  /* Show the mobile menu toggle on the right side of flex container */
+  .menu-toggle {
+    display: flex;
+  }
+
+  /* Hide the desktop CTA button entirely on mobile layout */
+  .desktop-cta-button {
+    display: none !important;
+  }
+
+  /* When the mobile menu is active, the toggle turns orange */
+  .menu-toggle.open {
+    background-color: #bc672c;
+  }
+  
+  .menu-toggle.open .hamburger-line {
+    background-color: #fffaf7;
+  }
+
+  /* Pixel-perfect alignment transformation to 'X' */
+  .menu-toggle.open .hamburger-line:nth-child(1) {
+    transform: translateY(6px) rotate(45deg); /* Slides 6px to center, rotates */
+  }
+  .menu-toggle.open .hamburger-line:nth-child(2) {
+    opacity: 0;
+    transform: scale(0); /* Smoothly shrinks out of view */
+  }
+  .menu-toggle.open .hamburger-line:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg); /* Slides -6px to center, rotates */
+  }
+
+  /* Dropdown Navigation Menu - Custom Animatable Slide Fade-down */
+  .nav-menu {
+    position: absolute;
+    top: 100%; /* Sits exactly below the header */
+    left: 0;
+    width: 100%;
+    background-color: #171717; /* Solid Slate */
+    border-bottom: 2px solid #bc672c; /* Highlight base edge of open menu */
+    padding: 20px 0 40px 0;
+    
+    /* Default Hidden/Collapsed State */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-15px); /* Offsets slightly upward */
+    pointer-events: none; /* Prevents ghost-clicking hidden links */
+    
+    /* Smooth GPU transition across all properties */
+    transition: opacity 300ms ease, transform 300ms ease, visibility 300ms;
+    z-index: 999;
+  }
+
+  /* Smoothly transitions into view when active class is present */
+  .nav-menu.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0); /* Slides down to natural position */
+    pointer-events: auto;
+  }
+
+  .nav-list {
+    flex-direction: column;
+    width: 100%;
+    gap: 0;
+  }
+
+  .nav-list li {
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-link {
+    display: block;
+    padding: 18px 0 !important; /* Safe mobile padding override */
+    margin: 0 !important; /* Reset desktop-only margin spacing on mobile layout */
+    font-size: 16px;
+    letter-spacing: 0.2em;
+    width: 100%;
+  }
+
+  /* Content Grid Responsive Overrides for smaller devices */
+  .home-grid-section {
+    padding: 60px 0; 
+  }
+
+  .grid-container {
+    width: 100%; /* Spans 100% on mobile */
+    padding: 0 20px; /* Safe appropriate mobile layout margins */
+    gap: 80px;
+  }
+
+  /* Bio collapses to single column (Text naturally flows first, image second) */
+  .bio-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .grid-headline {
+    font-size: 38px; /* Scaled down slightly to fit smaller displays safely */
+    line-height: 44px;
+  }
+
+  .grid-paragraph {
+    font-size: 18px; /* Scaled down slightly for mobile reading */
+    line-height: 32px;
+  }
+
+  /* Video collapses to single column */
+  .video-grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .video-title {
+    font-size: 24px;
+    line-height: 26px;
+  }
+
+  .video-meta {
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  /* Full-Width Photo Banner Mobile adjustments */
+  .photo-banner-section {
+    height: 50vh;
+    min-height: 350px;
+    padding-bottom: 40px;
+  }
+
+  /* Footer Mobile overrides */
+  .site-footer {
+    padding: 60px 0;
+  }
+
+  .footer-container {
+    width: 100%;
+    padding: 0 20px;
+    gap: 35px;
+  }
+
+  .footer-nav-list {
+    flex-direction: column; /* Vertical link stacks on mobile */
+    gap: 20px;
+    width: 100%;
+    align-items: center;
+  }
+
+  .footer-nav-link {
+    font-size: 16px;
+    letter-spacing: 0.2em;
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .footer-credits,
+  .management-title,
+  .management-meta {
+    font-size: 14px; /* Mobile readability scaling */
+    line-height: 24px;
+  }
+
+  /* ==========================================================================
+     ABOUT PAGE MOBILE RESPONSIVE OVERRIDES
+     ========================================================================== */
+  .about-section {
+    padding: 60px 0;
+  }
+
+  .about-container {
+    width: 100%;
+    padding: 0 20px;
+    gap: 80px;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr; /* Stacks column elements in a single block */
+    gap: 40px;
+  }
+
+  .about-headline {
+    font-size: 38px; /* Safe mobile headline scaling */
+    line-height: 44px;
+    margin-bottom: 25px;
+  }
+
+  .about-paragraph {
+    font-size: 18px; /* Safe mobile paragraph scaling */
+    line-height: 32px;
+  }
+
+  .about-button-wrapper {
+    margin-top: 30px;
+  }
+
+  .press-heading {
+    font-size: 36px; /* Elegant scale for smaller mobile quote block titles */
+    line-height: 42px;
+    margin-bottom: 40px;
+  }
+
+  .quote-item {
+    margin-bottom: 40px;
+  }
+
+  .quote-text {
+    font-size: 18px; /* Scales down gracefully for mobile display limits */
+    line-height: 28px;
+  }
+
+  .quote-cite {
+    font-size: 18px; /* Scales down gracefully to maintain balance on mobile views */
+    line-height: 28px;
+  }
+  
+  /* ==========================================================================
+     MEDIA PAGE MOBILE RESPONSIVE OVERRIDES (Added inside 991px Media Query)
+     ========================================================================== */
+  .media-section {
+    padding: 60px 0;
+  }
+
+  .media-container {
+    width: 90%; /* Matches desktop: exactly 90% width with no fixed side padding */
+    padding: 0;  /* Removes any fixed horizontal paddings */
+  }
+
+  .media-heading {
+    font-size: 40px; /* Scaled precisely to 40px */
+    line-height: 50px; /* Scaled precisely to 50px line height */
+    margin-bottom: 30px;
+  }
+
+  .media-list {
+    gap: 45px;
+  }
+
+  .media-section .video-title {
+    font-size: 28px; /* Scaled precisely to 28px */
+    line-height: 36px; /* Scaled precisely to 36px line height */
+    color: #fffaf7;
+  }
+
+  .media-section .video-meta {
+    font-size: 14px; /* Scaled precisely to 14px */
+    line-height: 28px; /* Scaled precisely to 28px line height */
+    color: #fffaf7;
+  }
+  
+  /* ==========================================================================
+     TEACHING PAGE MOBILE RESPONSIVE OVERRIDES (Added inside 991px Media Query)
+     ========================================================================== */
+  .teaching-section {
+    padding: 60px 0;
+  }
+
+  .teaching-container {
+    width: 90%; /* Content width set exactly to 90% */
+    padding: 0;
+  }
+
+  .teaching-heading {
+    font-size: 40px; /* Aligned mobile header scale */
+    line-height: 50px;
+    margin-bottom: 40px;
+  }
+
+  .teaching-grid {
+    grid-template-columns: 1fr; /* Collapses to single column vertical stack */
+    gap: 40px;
+  }
+
+  .section-subheading {
+    font-size: 22px;
+    line-height: 28px;
+    margin-bottom: 20px;
+  }
+
+  .rates-subheading {
+    margin-top: 40px;
+  }
+
+  .teaching-paragraph,
+  .teaching-quote,
+  .rate-item {
+    font-size: 18px; /* High legibility scaled mobile font sizes */
+    line-height: 32px;
+  }
+
+  .teaching-cta-wrapper {
+    margin-top: 50px;
+  }
+  
+  /* ==========================================================================
+     CONTACT PAGE MOBILE RESPONSIVE OVERRIDES (Added inside 991px Media Query)
+     ========================================================================== */
+  .contact-section {
+    padding: 60px 0;
+  }
+
+  .contact-container {
+    width: 90%; /* Sets layout column to 90% wide on mobile devices */
+  }
+
+  .contact-heading {
+    font-size: 40px;
+    line-height: 50px;
+    margin-bottom: 30px;
+  }
+
+  .contact-subtext,
+  .contact-link-row {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .contact-banner-section {
+    height: 50vh; /* Shrunk height for better framing on hand-held displays */
+    min-height: 350px;
+  }
+  
+  /* ==========================================================================
+     SCHEDULE PAGE MOBILE RESPONSIVE OVERRIDES (Added inside 991px Media Query)
+     ========================================================================== */
+  .schedule-hero {
+    min-height: auto;
+    padding: 60px 0;
+  }
+
+  .schedule-hero-container {
+    width: 90%; /* Unified mobile container margins */
+    padding: 0;
+  }
+
+  .schedule-hero-grid {
+    grid-template-columns: 1fr; /* Collapses columns to a simple stack */
+    gap: 0;
+  }
+
+  .upcoming-heading {
+    font-size: 44px; /* Scaled mobile headline size */
+    line-height: 48px;
+    margin-bottom: 30px;
+  }
+
+  .schedule-past-section {
+    padding: 60px 0;
+  }
+
+  .schedule-past-container {
+    width: 90%; /* Aligns with mobile boundaries */
+    padding: 0;
+  }
+
+  .schedule-item {
+    margin-bottom: 30px;
+  }
+
+  .opera-title {
+    font-size: 26px; /* High legibility mobile opera title scaling */
+    line-height: 30px;
+  }
+
+  .opera-meta {
+    font-size: 14px; /* High legibility mobile meta description scaling */
+    line-height: 22px;
+  }
+  
+  /* ==========================================================================
+     PHOTOS PAGE MOBILE RESPONSIVE OVERRIDES (Added inside 991px Media Query)
+     ========================================================================== */
+  .photos-section {
+    padding: 60px 0;
+  }
+
+  .photos-container {
+    width: 90%; /* Updated to exactly 90% on mobile viewports as requested */
+    gap: 20px; /* Tighter layout gap padding suited for mobile screens */
+  }
+
+  .photos-columns-grid {
+    grid-template-columns: 1fr; /* Collapses 2-columns side-by-side to vertical stacks */
+    gap: 20px;
+  }
+
+  .photos-column {
+    gap: 20px;
+  }
+}
+
+/* ==========================================================================
+   9. MEDIA PAGE STYLES (Updated to 90% Width Layout)
+   ========================================================================== */
+.media-section {
+  background-color: #171717; /* Slate dark background */
+  color: #fffaf7; /* Solid FFFAF7 white text style */
+  padding: 100px 0;
+  width: 100%;
+}
+
+.media-container {
+  width: 90%; /* Replaced 80% with requested 90% content column width */
+  max-width: 950px; /* Sits sharply on wider screens matching homepage thresholds */
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.media-heading {
+  font-family: 'EB Garamond', serif;
+  font-size: 40px;
+  line-height: 50px;
+  font-weight: 400;
+  color: #fffaf7;
+  margin-bottom: 50px;
+}
+
+.media-list {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  width: 100%;
+}
+
+.media-section .video-title {
+  color: #fffaf7; /* High contrast white */
+  font-family: 'EB Garamond', serif;
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 36px;
+  margin-top: 0px;
+}
+
+.media-section .video-meta {
+  color: #fffaf7; /* Color updated to FFFAF7 as requested */
+  font-family: 'Mulish', sans-serif;
+  font-size: 14px;
+  line-height: 28px;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  margin-bottom: 0;
+}
