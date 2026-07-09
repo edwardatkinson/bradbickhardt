@@ -1115,6 +1115,17 @@ background-position: center, 50% 20%;
    8. RESPONSIVE MOBILE STYLES (CONSOLIDATED 991px Breakpoint)
    ========================================================================== */
 @media (max-width: 991px) {
+	
+	/* Mobile Background Focal Points for Carousel Slides */
+  .carousel-slide.slide-1 {
+    background-position: 60% 50%;
+  }
+  .carousel-slide.slide-2 {
+    background-position: 20% 50%;
+  }
+  .carousel-slide.slide-3 {
+    background-position: 90% 50%;
+  }
   /* Spacing adjustment for smaller mobile/tablet layouts */
   .header-container {
     padding: 15px 20px;
